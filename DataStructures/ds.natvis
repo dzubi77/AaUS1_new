@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
+  <Type Name="ds::mm::CompactMemoryManager&lt;*&gt;">
+    <Expand>
+      <Item Name="[size]" ExcludeView="simple">end_ - base_</Item>
+      <Item Name="[capacity]" ExcludeView="simple">limit_ - base_</Item>
+      <ArrayItems>
+        <Size>end_ - base_</Size>
+        <ValuePointer>base_</ValuePointer>
+      </ArrayItems>
+    </Expand>
+  </Type>
+</AutoVisualizer>

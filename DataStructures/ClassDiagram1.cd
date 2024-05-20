@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ds::amt::ExplicitHierarchy&lt;BlockType&gt;" Collapsed="true">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEgAAIAAAACEAAAAAIQAAACAAAAAAhAAAAAAAAAAQAA=</HashCode>
+      <FileName>libds\amt\explicit_hierarchy.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ds::amt::MultiWayExplicitHierarchy&lt;DataType&gt;" Collapsed="true">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABgAAAEBAAAAEAAAAAAAAAUAAAAAAAAAAAAAA=</HashCode>
+      <FileName>libds\amt\explicit_hierarchy.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ds::amt::KWayExplicitHierarchy&lt;DataType, K&gt;" Collapsed="true">
+    <Position X="5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACgAAAEBAAAAEAAAAAAAAAEABAAAAAAAAAAAA=</HashCode>
+      <FileName>libds\amt\explicit_hierarchy.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ds::amt::BinaryExplicitHierarchy&lt;DataType&gt;" Collapsed="true">
+    <Position X="2.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAIggBAEBAAAAlEAAAAABAAUEAAAAAgAAAAAAQ=</HashCode>
+      <FileName>libds\amt\explicit_hierarchy.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="ds::amt::ExplicitHierarchyBlock&lt;DataType&gt;" Collapsed="true">
+    <Position X="2.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>libds\amt\explicit_hierarchy.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="ds::amt::MultiWayExplicitHierarchyBlock&lt;DataType&gt;" Collapsed="true">
+    <Position X="5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAQAAABAAAAAAA=</HashCode>
+      <FileName>libds\amt\explicit_hierarchy.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="ds::amt::KWayExplicitHierarchyBlock&lt;DataType, K&gt;" Collapsed="true">
+    <Position X="2.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAEAAAAAACAAAAAA=</HashCode>
+      <FileName>libds\amt\explicit_hierarchy.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="ds::amt::BinaryExplicitHierarchyBlock&lt;DataType&gt;" Collapsed="true">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAAAgAAAAAAAAkAA=</HashCode>
+      <FileName>libds\amt\explicit_hierarchy.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
