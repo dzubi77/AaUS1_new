@@ -156,36 +156,51 @@ public:
 			{
 				if (unit->data_->getType() == "obec")
 				{
-					insertIntoTable(*villageTab_, unit);
+					if (!villageTab_->contains(unit->data_->getTitle()))
+					{
+						auto tabData = new ds::amt::IS<TerritorialUnit*>();
+						tabData->insertLast().data_ = unit->data_;
+						villageTab_->insert(unit->data_->getTitle(), tabData);
+					}
+					else
+					{
+						auto sequence = villageTab_->find(unit->data_->getTitle());
+						sequence->insertLast().data_ = unit->data_;
+					}
 				}
 				else if (unit->data_->getType() == "okres")
 				{
-					insertIntoTable(*districtTab_, unit);
+					if (!districtTab_->contains(unit->data_->getTitle()))
+					{
+						auto tabData = new ds::amt::IS<TerritorialUnit*>();
+						tabData->insertLast().data_ = unit->data_;
+						districtTab_->insert(unit->data_->getTitle(), tabData);
+					}
+					else
+					{
+						auto sequence = districtTab_->find(unit->data_->getTitle());
+						sequence->insertLast().data_ = unit->data_;
+					}
 				}
 				else if (unit->data_->getType() == "kraj")
 				{
-					insertIntoTable(*regionTab_, unit);
+					if (!regionTab_->contains(unit->data_->getTitle()))
+					{
+						auto tabData = new ds::amt::IS<TerritorialUnit*>();
+						tabData->insertLast().data_ = unit->data_;
+						regionTab_->insert(unit->data_->getTitle(), tabData);
+					}
+					else
+					{
+						auto sequence = regionTab_->find(unit->data_->getTitle());
+						sequence->insertLast().data_ = unit->data_;
+					}
 				}
 			});
 	}
 
-	
-private:
-	void insertIntoTable(ds::adt::HashTable<std::string, ds::amt::IS<TerritorialUnit*>*>& table, const ds::amt::MWEHBlock<TerritorialUnit*>* unit) 
-	{
-		if (!table.contains(unit->data_->getTitle()))
-		{
-			auto tabData = new ds::amt::IS<TerritorialUnit*>();
-			tabData->insertLast().data_ = unit->data_;
-			table.insert(unit->data_->getTitle(), tabData);
-		}
-		else
-		{
-			auto sequence = regionTab_->find(unit->data_->getTitle());
-			sequence->insertLast().data_ = unit->data_;
-		}
-	}
 
+private:
 	// structures for U1
 	//ds::amt::IS<Region*>* regions_;
 	//ds::amt::IS<District*>* districts_;
