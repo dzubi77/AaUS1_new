@@ -192,6 +192,12 @@
     <ClInclude Include="tests\adt\tree.test.h">
       <Filter>tests\adt</Filter>
     </ClInclude>
+    <ClInclude Include="complexities\table_analyzer.h">
+      <Filter>complexities</Filter>
+    </ClInclude>
+    <ClInclude Include="complexities\priority_queue_analyzer.h">
+      <Filter>complexities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="ds.natvis" />
