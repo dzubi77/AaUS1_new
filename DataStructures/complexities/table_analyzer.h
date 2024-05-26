@@ -2,14 +2,17 @@
 
 #include <complexities/complexity_analyzer.h>
 #include <libds/adt/table.h>
+
 #include <random>
+
+#include "list_analyzer.h"
 
 namespace ds::utils
 {
     /**
      * @brief Common base for list analyzers.
      */
-    template<class Table>
+    template<class Table >
     class TableAnalyzer : public ComplexityAnalyzer<Table>
     {
     protected:
@@ -17,7 +20,6 @@ namespace ds::utils
 
     protected:
         void growToSize(Table& structure, size_t size) override;
-
         int key_;
         int data_;
 
@@ -27,7 +29,7 @@ namespace ds::utils
     };
 
     /**
-     * @brief Analyzes complexity of an insertion at the beginning.
+     * @brief Analyzes complexity of an insertion.
      */
     template<class Table>
     class TableInsertAnalyzer : public TableAnalyzer<Table>
@@ -40,7 +42,20 @@ namespace ds::utils
     };
 
     /**
-     * @brief Container for all list analyzers.
+     * @brief Analyzes complexity of an finding.
+     */
+    template<class Table>
+    class TableTryFindAnalyzer : public TableAnalyzer<Table>
+    {
+    public:
+        explicit TableTryFindAnalyzer(const std::string& name);
+
+    protected:
+        void executeOperation(Table& structure) override;
+    };
+
+    /**
+     * @brief Container for all table analyzers.
      */
     class TablesAnalyzer : public CompositeAnalyzer
     {
@@ -53,33 +68,37 @@ namespace ds::utils
     template<class Table>
     TableAnalyzer<Table>::TableAnalyzer(const std::string& name) :
         ComplexityAnalyzer<Table>(name),
-        key_(0), data_(0), rngData_(144), rngKey_(144)
+        rngData_(144),
+        rngKey_(144),
+        key_(0),
+        data_(0)
     {
+        // 01
         this->registerBeforeOperation([this](Table& table)
             {
-                std::uniform_int_distribution dist(1, 10000000);
-                key_ = dist(rngKey_);
-                data_ = rngData_();
-                while (table.contains(key_))
-                {
-                    key_ = dist(rngKey_);
-                }
+                std::uniform_int_distribution dist(1, 1000000);
+                this->key_ = dist(this->rngKey_);
+				while (table.contains(this->key_))
+				{
+                    this->key_ = dist(this->rngKey_);
+				}
+                this->data_ = this->rngData_();
             });
     }
 
     template <class Table>
     void TableAnalyzer<Table>::growToSize(Table& structure, size_t size)
     {
-        const size_t neededCount = size - structure.size();
-
-        for (size_t i = 0; i < neededCount; ++i)
+        // 01
+        size_t count = size - structure.size();
+        for (size_t i = 0; i < count; ++i)
         {
-            std::uniform_int_distribution dist(1, 10000000);
-            int key = dist(rngKey_);
-            int data = rngData_();
+            std::uniform_int_distribution dist(1, 1000000);
+            int key = dist(this->rngKey_);
+            int data = this->rngData_();
             while (structure.contains(key))
             {
-                key = dist(rngKey_);
+                key = dist(this->rngKey_);
             }
             structure.insert(key, data);
         }
@@ -101,10 +120,23 @@ namespace ds::utils
 
     //----------
 
+    template <class Table>
+    TableTryFindAnalyzer<Table>::TableTryFindAnalyzer(const std::string& name) :
+        TableAnalyzer<Table>(name)
+    {
+    }
+
+    template <class Table>
+    void TableTryFindAnalyzer<Table>::executeOperation(Table& structure)
+    {
+    }
+
+    //----------
+
     inline TablesAnalyzer::TablesAnalyzer() :
         CompositeAnalyzer("Tables")
     {
-        this->addAnalyzer(std::make_unique<TableInsertAnalyzer<adt::SortedSequenceTable<int, int>>>("SortedSTab-insert"));
-        this->addAnalyzer(std::make_unique<TableInsertAnalyzer<adt::BinarySearchTree<int, int>>>("BST-insert"));
+        this->addAnalyzer(std::make_unique<TableInsertAnalyzer<adt::HashTable<int, int>>>("HashTable-insert"));
+        this->addAnalyzer(std::make_unique<TableTryFindAnalyzer<adt::HashTable<int, int>>>("HashTable-tryFind"));
     }
 }

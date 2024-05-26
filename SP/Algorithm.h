@@ -26,7 +26,7 @@ public:
 		} 
 	}
 
-	static void searchAndPrintTable(ds::adt::HashTable<std::string, ds::amt::IS<TerritorialUnit*>*>& table, std::string title)
+	static void searchAndPrintTable(ds::adt::HashTable<std::string, ds::amt::IS<TerritorialUnit*>*>& table, const std::string& title)
 	{
 		if (table.contains(title))
 		{
@@ -82,10 +82,10 @@ public:
 		return str;
 	}
 
-	static int getConsonantCount(std::string str)
+	static int getConsonantCount(const std::string& str)
 	{
 		int count = 0;
-		for (char& c : str)
+		for (const char& c : str)
 		{
 			if (CONSONANTS.find(c) != std::string::npos)
 			{
@@ -95,7 +95,7 @@ public:
 		return count;
 	}
 
-	static bool compareStrings(std::string a, std::string b)
+	static bool compareStrings(const std::string& a, const std::string& b)
 	{
 		// go through shorter string
 		// compare find at(a), at(b)

@@ -634,7 +634,7 @@ namespace ds::adt {
     template <typename K, typename T>
     bool HashTable<K, T>::equals(const ADT& other)
     {
-        // TODO 11
+        // 11
         return Table<K, T>::areEqual(*this, other);
     }
 

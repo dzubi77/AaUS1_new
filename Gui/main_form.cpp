@@ -4,7 +4,6 @@
 #include <complexities/list_analyzer.h>
 #include <msclr\marshal_cppstd.h>
 
-#include "complexities/priority_queue_analyzer.h"
 #include "complexities/table_analyzer.h"
 
 namespace WF = System::Windows::Forms;
@@ -58,7 +57,6 @@ std::vector<std::unique_ptr<ds::utils::Analyzer>> createAnalyzers()
 	//01
 	analyzers.emplace_back(std::make_unique<ds::utils::ListsAnalyzer>());
 	analyzers.emplace_back(std::make_unique<ds::utils::TablesAnalyzer>());
-	analyzers.emplace_back(std::make_unique<ds::utils::PriorityQueuesAnalyzer>());
 
 	return analyzers;
 }

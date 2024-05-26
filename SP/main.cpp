@@ -60,7 +60,7 @@ int main(int argc, const char** argv)
             }
             else
             {
-                std::cout << "No such parent! \n";
+                std::cout << "Unit does not have parent! \n";
             }
             std::cout << '\n';
         }
@@ -68,7 +68,7 @@ int main(int argc, const char** argv)
         {
             if (currentNode->data_->getType() == "obec")
             {
-                std::cout << "You are at the leaf of hierarchy! \n";
+                std::cout << "Unit does not have son! \n";
             }
             else 
             {
@@ -182,15 +182,16 @@ int main(int argc, const char** argv)
             if (!finalIS.isEmpty())
             {
                 int sort;
-                std::cout << "Would you like to sort data? [1 - yes, any other number will not sort the data!]\n";
+                std::cout << "Would you like to sort data? [1 - yes; any other number will not sort the data!]\n";
                 std::cin >> sort;
                 if (sort == 1)
                 {
                     Algorithm::sort(finalIS);
                 }
+                
                 for (const auto terUnit : finalIS)
                 {
-                    std::cout << terUnit->toString() << " [consonant count: " << Algorithm::getConsonantCount(terUnit->getTitle()) << "]" << "\n";
+                    std::cout << terUnit->toString() << "[consonant count: " << Algorithm::getConsonantCount(terUnit->getTitle()) << "]" << "\n";
                 }
             }
             else

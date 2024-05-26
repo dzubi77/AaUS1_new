@@ -233,9 +233,19 @@ namespace ds::adt
     template<typename T>
     void ShellSort<T>::shell(amt::ImplicitSequence<T>& is, std::function<bool(const T&, const T&)> compare, size_t k)
     {
-        // TODO 12
-        // po implementacii vymazte vyhodenie vynimky!
-        throw std::runtime_error("Not implemented yet");
+        // 12
+        for (size_t d = 0; d < k; ++d) {
+            for (size_t i = d; i < is.size(); ++i) {
+                size_t j = i;
+                while (j >= k && j - k >= d && compare(is.access(j)->data_, is.access(j - k)->data_)) {
+                    std::swap(is.access(j)->data_, is.access(j - k)->data_);
+                    j = j - k;
+                }
+            }
+        }
+        if (k > 1) {
+            shell(is, compare, k - 1);
+        }
     }
 
     template<typename Key, typename T>
