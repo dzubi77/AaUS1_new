@@ -20,21 +20,18 @@ int main(int argc, const char** argv)
     SetConsoleOutputCP(1250);
 
     FileHandler file("CR.csv");
-    //StructuresManager manager(new IS<Region*>(), new IS<District*>(), new IS<Village*>(), new MultiWayEH<TerritorialUnit*>(),
-    //    new HashTable<std::string, IS<TerritorialUnit*>*>(), new HashTable<std::string, IS<TerritorialUnit*>*>(), new HashTable<std::string, IS<TerritorialUnit*>*>());
-    //auto regions = manager.getRegions();
-    //auto districts = manager.getDistricts();
-    //auto villages = manager.getVillages();
-    StructuresManager manager(new HashTable<std::string, IS<TerritorialUnit*>*>(), new HashTable<std::string, IS<TerritorialUnit*>*>(), new HashTable<std::string, IS<TerritorialUnit*>*>(),
-        new MultiWayEH<TerritorialUnit*>());
+    StructuresManager manager(new IS<Region*>(), new IS<District*>(), new IS<Village*>(), new MultiWayEH<TerritorialUnit*>(),
+        new HashTable<std::string, IS<TerritorialUnit*>*>(), new HashTable<std::string, IS<TerritorialUnit*>*>(), new HashTable<std::string, IS<TerritorialUnit*>*>());
+    auto regions = manager.getRegions();
+    auto districts = manager.getDistricts();
+    auto villages = manager.getVillages();
 	auto hierarchy = manager.getHierarchy();
     auto regTab = manager.getRegionTab();
     auto districtTab = manager.getDistrictTab();
     auto villageTab = manager.getVillageTab();
 
-    //file.loadData(*regions, *districts, *villages);
-    //manager.loadHierarchyFromSequence();
-    file.loadData(*hierarchy);
+    file.loadData(*regions, *districts, *villages);
+    manager.loadHierarchyFromSequence();
     manager.loadTables();
 
     
@@ -152,10 +149,31 @@ int main(int argc, const char** argv)
                         return true;
                     };
                 // code from U1
-                //Algorithm::filter(regions->begin(), regions->end(), finalIS, startsWith);
-                //Algorithm::filter(districts->begin(), districts->end(), finalIS, startsWith);
-                //Algorithm::filter(villages->begin(), villages->end(), finalIS, startsWith);
-                Algorithm::filter(Hierarchy<MWEHBlock<TerritorialUnit*>>::PreOrderHierarchyIterator(hierarchy, currentNode), hierarchy->end(), finalIS, startsWith);
+                int seq;
+                std::cout << "Do you want to load from sequence? [1 - yes] \n";
+                std::cin >> seq;
+                if (seq == 1)
+                {
+                    std::string type;
+                    std::cout << "which type of unit you want to filter? \n";
+                    std::cin >> type;
+                    if (type == "obec")
+                    {
+                        Algorithm::filter(villages->begin(), villages->end(), finalIS, startsWith);
+                    }
+                    else if (type == "soorp")
+                    {
+                        Algorithm::filter(districts->begin(), districts->end(), finalIS, startsWith);
+                    }
+                    else if (type == "kraj")
+                    {
+                        Algorithm::filter(regions->begin(), regions->end(), finalIS, startsWith);
+                    }
+                }
+                else 
+                {
+                    Algorithm::filter(Hierarchy<MWEHBlock<TerritorialUnit*>>::PreOrderHierarchyIterator(hierarchy, currentNode), hierarchy->end(), finalIS, startsWith);
+                }
             }
             else if (option == "co")
             {
@@ -165,10 +183,31 @@ int main(int argc, const char** argv)
                         return Algorithm::stringToLower(title).find(Algorithm::stringToLower(substring)) != std::string::npos;
                     };
                 // code from U1
-                //Algorithm::filter(regions->begin(), regions->end(), finalIS, contains);
-                //Algorithm::filter(districts->begin(), districts->end(), finalIS, contains);
-                //Algorithm::filter(villages->begin(), villages->end(), finalIS, contains);
-            	Algorithm::filter(Hierarchy<MWEHBlock<TerritorialUnit*>>::PreOrderHierarchyIterator(hierarchy, currentNode), hierarchy->end(), finalIS, contains);
+                int seq;
+                std::cout << "Do you want to load from sequence? [1 - yes] \n";
+                std::cin >> seq;
+                if (seq == 1)
+                {
+                    std::string type;
+                    std::cout << "which type of unit you want to filter? \n";
+                    std::cin >> type;
+                    if (type == "obec")
+                    {
+                        Algorithm::filter(villages->begin(), villages->end(), finalIS, contains);
+                    }
+                    else if (type == "soorp")
+                    {
+                        Algorithm::filter(districts->begin(), districts->end(), finalIS, contains);
+                    }
+                    else if (type == "kraj")
+                    {
+                        Algorithm::filter(regions->begin(), regions->end(), finalIS, contains);
+                    }
+                }
+                else
+                {
+                    Algorithm::filter(Hierarchy<MWEHBlock<TerritorialUnit*>>::PreOrderHierarchyIterator(hierarchy, currentNode), hierarchy->end(), finalIS, contains);
+                }
             }
             else
             {

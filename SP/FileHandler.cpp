@@ -1,6 +1,6 @@
 #include "FileHandler.h"
 
-/* loading data for U1
+// loading data for U1
 void FileHandler::loadData(ds::amt::IS<Region*>& regions, ds::amt::IS<District*>& districts, ds::amt::IS<Village*>& villages)
 {
     if (!input_.is_open())
@@ -82,8 +82,7 @@ void FileHandler::loadData(ds::amt::IS<Region*>& regions, ds::amt::IS<District*>
 
     input_.close();
 }
-*/
-
+/*
 void FileHandler::loadData(ds::amt::MultiWayEH<TerritorialUnit*>& hierarchy)
 {
     if (!input_.is_open())
@@ -172,4 +171,6 @@ void FileHandler::loadData(ds::amt::MultiWayEH<TerritorialUnit*>& hierarchy)
     }
 
     input_.close();
+    
 }
+*/

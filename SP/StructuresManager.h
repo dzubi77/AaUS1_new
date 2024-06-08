@@ -9,26 +9,23 @@
 class StructuresManager
 {
 public:
-	/* Constructor U1
+	//Constructor U1
 	StructuresManager(ds::amt::IS<Region*>* regions, ds::amt::IS<District*>* districts, ds::amt::IS<Village*>* villages, ds::amt::MultiWayEH<TerritorialUnit*>* hierarchy,
 		ds::adt::HashTable<std::string, ds::amt::IS<TerritorialUnit*>*>* regTab, ds::adt::HashTable<std::string, ds::amt::IS<TerritorialUnit*>*>* districtTab, ds::adt::HashTable<std::string, ds::amt::IS<TerritorialUnit*>*>* villageTab)
 		: regions_(regions), districts_(districts), villages_(villages), hierarchy_(hierarchy),
 			regionTab_(regTab), districtTab_(districtTab), villageTab_(villageTab) {}
-			*/
 
-	StructuresManager(ds::adt::HashTable<std::string, ds::amt::IS<TerritorialUnit*>*>* regTab, ds::adt::HashTable<std::string, ds::amt::IS<TerritorialUnit*>*>* disTab, ds::adt::HashTable<std::string, ds::amt::IS<TerritorialUnit*>*>* vilTab,
-		ds::amt::MultiWayEH<TerritorialUnit*>* hierarchy) : regionTab_(regTab), districtTab_(disTab), villageTab_(vilTab), hierarchy_(hierarchy) {}
 	StructuresManager(const StructuresManager& other) = default;
 	~StructuresManager()
 	{
-		/* Destructors for U1
+		//Destructors for U1
 		delete regions_;
 		regions_ = nullptr;
 		delete districts_;
 		districts_ = nullptr;
 		delete villages_;
 		villages_ = nullptr;
-		*/
+		
 		delete hierarchy_;
 		hierarchy_ = nullptr;
 		delete regionTab_;
@@ -38,11 +35,11 @@ public:
 		delete villageTab_;
 		villageTab_ = nullptr;
 	}
-	/* Getters for U1
+	// Getters for U1
 	ds::amt::IS<Region*>* getRegions() { return regions_; }
 	ds::amt::IS<District*>* getDistricts() { return districts_; }
 	ds::amt::IS<Village*>* getVillages() { return villages_; }
-	*/
+	
 	ds::amt::MultiWayEH<TerritorialUnit*>* getHierarchy() { return hierarchy_; }
 	ds::adt::HashTable<std::string, ds::amt::IS<TerritorialUnit*>*>* getRegionTab() { return regionTab_; }
 	ds::adt::HashTable<std::string, ds::amt::IS<TerritorialUnit*>*>* getDistrictTab() { return districtTab_; }
@@ -50,7 +47,6 @@ public:
 
 	void deleteStructuresData()
 	{
-		/* destructor of data for U1
 		// delete sequences' data
 		for (auto it = regions_->begin(); it != regions_->end(); ++it)
 		{
@@ -64,13 +60,10 @@ public:
 		{
 			delete* it;
 		}
-		*/
+		
 
-		// delete hierarchy's data
-		hierarchy_->processPostOrder(hierarchy_->accessRoot(), [&](const ds::amt::MWEHBlock<TerritorialUnit*>* unit)
-			{
-				delete unit->data_;
-			});
+		// delete hierarchy root's data
+		delete hierarchy_->accessRoot()->data_;
 
 		// delete tables' data
 		for (auto it = villageTab_->begin(); it != villageTab_->end(); ++it)
@@ -90,7 +83,7 @@ public:
 		}
 	}
 
-	/*
+	
 	void loadHierarchyFromSequence()
 	{
 		hierarchy_->emplaceRoot().data_ = new TerritorialUnit(" ", "Ceska republika", "krajina");
@@ -148,7 +141,6 @@ public:
 			indexLv3++;
 		}
 	}
-	*/
 
 	void loadTables()
 	{
@@ -202,9 +194,9 @@ public:
 
 private:
 	// structures for U1
-	//ds::amt::IS<Region*>* regions_;
-	//ds::amt::IS<District*>* districts_;
-	//ds::amt::IS<Village*>* villages_;
+	ds::amt::IS<Region*>* regions_;
+	ds::amt::IS<District*>* districts_;
+	ds::amt::IS<Village*>* villages_;
 
 	ds::adt::HashTable<std::string, ds::amt::IS<TerritorialUnit*>*>* regionTab_;
 	ds::adt::HashTable<std::string, ds::amt::IS<TerritorialUnit*>*>* districtTab_;
