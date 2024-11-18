@@ -9,7 +9,6 @@
 class StructuresManager
 {
 public:
-	//Constructor U1
 	StructuresManager(ds::amt::IS<Region*>* regions, ds::amt::IS<District*>* districts, ds::amt::IS<Village*>* villages, ds::amt::MultiWayEH<TerritorialUnit*>* hierarchy,
 		ds::adt::HashTable<std::string, ds::amt::IS<TerritorialUnit*>*>* regTab, ds::adt::HashTable<std::string, ds::amt::IS<TerritorialUnit*>*>* districtTab, ds::adt::HashTable<std::string, ds::amt::IS<TerritorialUnit*>*>* villageTab)
 		: regions_(regions), districts_(districts), villages_(villages), hierarchy_(hierarchy),
@@ -18,7 +17,6 @@ public:
 	StructuresManager(const StructuresManager& other) = default;
 	~StructuresManager()
 	{
-		//Destructors for U1
 		delete regions_;
 		regions_ = nullptr;
 		delete districts_;
@@ -35,12 +33,13 @@ public:
 		delete villageTab_;
 		villageTab_ = nullptr;
 	}
-	// Getters for U1
+
 	ds::amt::IS<Region*>* getRegions() { return regions_; }
 	ds::amt::IS<District*>* getDistricts() { return districts_; }
 	ds::amt::IS<Village*>* getVillages() { return villages_; }
 	
 	ds::amt::MultiWayEH<TerritorialUnit*>* getHierarchy() { return hierarchy_; }
+
 	ds::adt::HashTable<std::string, ds::amt::IS<TerritorialUnit*>*>* getRegionTab() { return regionTab_; }
 	ds::adt::HashTable<std::string, ds::amt::IS<TerritorialUnit*>*>* getDistrictTab() { return districtTab_; }
 	ds::adt::HashTable<std::string, ds::amt::IS<TerritorialUnit*>*>* getVillageTab() { return villageTab_; }
@@ -144,7 +143,7 @@ public:
 
 	void loadTables()
 	{
-		hierarchy_->processPreOrder(hierarchy_->accessRoot(), [&](const ds::amt::MWEHBlock<TerritorialUnit*>* unit)
+		hierarchy_->processPreOrder(hierarchy_->accessRoot(), [&](const ds::amt::MWEHBlock<TerritorialUnit*>* unit) -> void
 			{
 				if (unit->data_->getType() == "obec")
 				{
@@ -193,14 +192,13 @@ public:
 
 
 private:
-	// structures for U1
 	ds::amt::IS<Region*>* regions_;
 	ds::amt::IS<District*>* districts_;
 	ds::amt::IS<Village*>* villages_;
 
+	ds::amt::MultiWayEH<TerritorialUnit*>* hierarchy_;
+
 	ds::adt::HashTable<std::string, ds::amt::IS<TerritorialUnit*>*>* regionTab_;
 	ds::adt::HashTable<std::string, ds::amt::IS<TerritorialUnit*>*>* districtTab_;
 	ds::adt::HashTable<std::string, ds::amt::IS<TerritorialUnit*>*>* villageTab_;
-
-	ds::amt::MultiWayEH<TerritorialUnit*>* hierarchy_;
 };

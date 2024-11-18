@@ -10,9 +10,6 @@
 using namespace ds::amt;
 using namespace ds::adt;
 
-//all commented code can be uncommented to run sequence structures
-//do not forget to comment other StructureManager constructor and other FileHandler::loadData() :D
-
 int main(int argc, const char** argv) 
 {
     initHeapMonitor();
@@ -148,7 +145,7 @@ int main(int argc, const char** argv)
 						}
                         return true;
                     };
-                // code from U1
+                
                 int seq;
                 std::cout << "Do you want to load from sequence? [1 - yes] \n";
                 std::cin >> seq;
@@ -182,7 +179,7 @@ int main(int argc, const char** argv)
                         std::string title = unit->getTitle();
                         return Algorithm::stringToLower(title).find(Algorithm::stringToLower(substring)) != std::string::npos;
                     };
-                // code from U1
+
                 int seq;
                 std::cout << "Do you want to load from sequence? [1 - yes] \n";
                 std::cin >> seq;
